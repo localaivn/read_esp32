@@ -1,0 +1,16 @@
+[Unit]
+Description=Read ESP32 Web Dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=orangepi
+WorkingDirectory=/home/orangepi/read_esp32
+ExecStart=/usr/bin/python3 /home/orangepi/read_esp32/read_esp32_web.py --host 0.0.0.0 --http-port 8080 --db /home/orangepi/read_esp32/esp32_data.db
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
